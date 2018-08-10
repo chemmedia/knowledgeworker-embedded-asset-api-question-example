@@ -11,8 +11,6 @@ Build your own KnowledgeWorker Embedded Asset by forking this repository.
 
 ### Prerequisites
 
-What things you need to install and build the project. 
-
 You will need the following tools to get started. Please have a look at the documentation on how to install them on your operating system.
 - node https://nodejs.org/
 - npm https://www.npmjs.com/
@@ -47,7 +45,7 @@ Build a distribution folder by typing the following comand.
 yarn build
 ```
 
-Now you can pack the content of the `dist` folder as zip archive and upload it as media asset to KnowledgeWorker.
+Now you can archive the content of the `dist` folder as zip archive and upload it as media asset to KnowledgeWorker.
 
 ## Versioning
 
