@@ -1,0 +1,101 @@
+@import "./fonts.scss";
+@import "./definitions.scss";
+
+body {
+  margin: 0;
+  background: #000 url('../assets/background.jpg') no-repeat center top / 100% auto;
+
+  header {
+    background: rgba(62, 73, 150, .5);
+    padding: 100px 20px 20px;
+    color: #fff;
+  }
+
+  section {
+    padding: 20px;
+    color: #ccc;
+  }
+
+  h4 {
+    @extend %headline;
+  }
+
+  p {
+    @extend %text;
+    margin: 0;
+  }
+
+  h4 + p,
+  p + p {
+    margin-top: 12px;
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 0 20px;
+    width: 120px;
+    max-width: 60%;
+  }
+
+  #expandable {
+    margin-bottom: 12px;
+  }
+
+  #add,
+  #remove {
+    @extend %button;
+  }
+
+  #completed {
+    @extend %link;
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  #size {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1;
+    background: rgba(0, 0, 0, .8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    padding: 7px 10px;
+    border-bottom-left-radius: 3px;
+  }
+
+  #console {
+    position: fixed;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    box-sizing: border-box;
+    padding: 0 10px;
+    transition: opacity 150ms ease, top 250ms;
+
+    &.visible {
+      top: 20px;
+      opacity: 1;
+    }
+
+    #console-content {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1;
+      background: rgb(255, 232, 43);
+      color: #000;
+      padding: 7px 10px;
+      border-radius: 3px;
+      position: relative;
+      text-align: center;
+    }
+  }
+}
+
