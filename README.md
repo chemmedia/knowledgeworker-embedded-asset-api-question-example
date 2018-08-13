@@ -58,3 +58,6 @@ We use [SemVer](http://semver.org/) for versioning. For the available versions, 
 ## Licence
 
 This project is licensed under MIT licence. Please see [LICENSE](./LICENSE) file for more information.
+
+###Acknowledgments
+ - Background photo by Nathan Anderson on [Unsplash](https://unsplash.com/photos/OQKQzw4o8cU)
