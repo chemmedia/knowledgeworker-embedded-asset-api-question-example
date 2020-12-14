@@ -1,4 +1,4 @@
-# Knowledgeworker Create Embedded Asset API Example
+# Knowledgeworker Create Embedded Asset API Question Example
 
 An example implementation of knowledgeworker-embedded-asset-api.
 
@@ -60,4 +60,4 @@ We use [SemVer](http://semver.org/) for versioning. For the available versions, 
 This project is licensed under MIT licence. Please see [LICENSE](./LICENSE) file for more information.
 
 ### Acknowledgments
- - Background photo by Nathan Anderson on [Unsplash](https://unsplash.com/photos/OQKQzw4o8cU)
+ - Background photo by Gabriel Sollmann on [Unsplash](https://unsplash.com/photos/-_2T9LzwbGU)
