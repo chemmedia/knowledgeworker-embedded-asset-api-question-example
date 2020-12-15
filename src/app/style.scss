@@ -9,13 +9,6 @@ body {
     overflow: hidden;
 
     .star {
-      position: absolute;
-      width: 4vw;
-      height: 4vw;
-      border: .3vw solid currentColor;
-      color: rgb(235, 175, 11);
-      border-radius: 50%;
-      margin: -2.3vw 0 0 -2.3vw;
       opacity: 0;
 
       &.solution {
@@ -23,26 +16,14 @@ body {
       }
     }
 
-    .choice {
+    .choice,
+    .star {
       position: absolute;
       width: 4vw;
       height: 4vw;
       border: .3vw solid currentColor;
-      color: #4A70AD;
       border-radius: 50%;
       margin: -2.3vw 0 0 -2.3vw;
-
-      &.correct {
-        color: rgb(0, 140, 20);
-      }
-
-      &.partial-correct {
-        color: rgb(135, 135, 135);
-      }
-
-      &.wrong {
-        color: rgb(200, 0, 0);
-      }
     }
   }
 

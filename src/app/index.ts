@@ -5,13 +5,14 @@ import {
     onInitialize, onReset,
     onShowResult, onShowSolution,
     ready,
-    setSuspendData
+    setSuspendData,
+    Configuration
 } from 'knowledgeworker-embedded-asset-api';
 import './resize';
 import './style.scss';
 
 const questionArea = document.getElementById('question-area');
-const stars = document.querySelectorAll('.star');
+const stars: HTMLDivElement[] = Array.from(document.querySelectorAll('.star'));
 
 interface Choice {
     element: HTMLDivElement;
@@ -22,12 +23,14 @@ interface Choice {
 
 let choices: Choice[] = [];
 let isDeactivated = false;
+let configuration: Configuration;
 
 const addChoice = (x: string, y: string, name?: string, shouldEvaluate: boolean = true) => {
     const choice = document.createElement('div');
     choice.classList.add('choice');
     choice.style.left = x;
     choice.style.top = y;
+    choice.style.color = configuration?.actionColor;
     choices.push({
         element: choice,
         x,
@@ -69,7 +72,7 @@ const evaluate = () => {
     answered(answer.length > 0 ? answer.toString() : undefined, isCorrect, isCorrect ? 1 : 0);
 };
 
-Array.from(stars).forEach(star => star.addEventListener('click', (event: MouseEvent) => {
+stars.forEach(star => star.addEventListener('click', (event: MouseEvent) => {
     const target = event.target as undefined | HTMLDivElement;
 
     if (!target || isDeactivated) {
@@ -80,16 +83,18 @@ Array.from(stars).forEach(star => star.addEventListener('click', (event: MouseEv
 }));
 questionArea?.addEventListener('click', (event: MouseEvent) => !isDeactivated && selectChoice(event));
 
-onInitialize((suspendData) => {
+onInitialize((config) => {
     let restoredChoices: Choice[] = [];
 
     try {
-        restoredChoices = JSON.parse(suspendData);
+        restoredChoices = JSON.parse(config.suspendData);
     } catch (e) {
         //
     }
 
     restoredChoices.forEach(choice => addChoice(choice.x, choice.y, choice.name, false));
+
+    configuration = config;
 });
 
 onDeactivate(() => {
@@ -97,12 +102,9 @@ onDeactivate(() => {
     document.body.classList.add('deactivated');
 });
 
-onShowResult((show, correct) => choices.forEach(choice => {
-    if (show) {
-        choice.element.classList.add(choice.name ? correct ? 'correct' : 'partial-correct' : 'wrong');
-    } else {
-        choice.element.classList.remove('correct', 'partial-correct', 'wrong');
-    }
+onShowResult((correct) => choices.forEach(choice => {
+    const { feedbackNegativeColor, feedbackPartialPositiveColor, feedbackPositiveColor } = configuration;
+    choice.element.style.color = choice.name ? correct ? feedbackPositiveColor : feedbackPartialPositiveColor : feedbackNegativeColor;
 }));
 
 onReset(() => {
@@ -110,28 +112,24 @@ onReset(() => {
     choices = [];
     isDeactivated = false;
     document.body.classList.remove('deactivated');
+    stars.forEach(star => star.classList.remove('solution'));
     evaluate();
 });
 
-onShowSolution((show) => {
+onShowSolution(() => {
+    const { feedbackNegativeColor, feedbackPositiveColor, feedbackSolutionColor } = configuration;
+
     choices.forEach(choice => {
-        if (show) {
-            choice.element.classList.remove('partial-correct');
-            choice.element.classList.add(choice.name ? 'correct' : 'wrong');
-        } else {
-            choice.element.classList.remove('correct', 'wrong');
-        }
+        choice.element.style.color = choice.name ? feedbackPositiveColor : feedbackNegativeColor;
     });
 
     const choiceNames = choices.map(choice => choice.name);
 
     stars.forEach(star => {
-        if (show) {
-            if (!choiceNames.includes(star.getAttribute('data-name') || undefined)) {
-                star.classList.add('solution');
-            }
-        } else {
-            star.classList.remove('solution');
+        star.style.color = feedbackSolutionColor;
+
+        if (!choiceNames.includes(star.getAttribute('data-name') || undefined)) {
+            star.classList.add('solution');
         }
     });
 });
