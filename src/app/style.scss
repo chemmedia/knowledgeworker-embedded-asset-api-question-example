@@ -8,22 +8,36 @@ body {
     background-size: cover;
     overflow: hidden;
 
-    .star {
-      opacity: 0;
-
-      &.solution {
-        opacity: 1;
-      }
-    }
-
     .choice,
     .star {
       position: absolute;
       width: 4vw;
       height: 4vw;
       border: .3vw solid currentColor;
+      color: var(--actionColor);
       border-radius: 50%;
       margin: -2.3vw 0 0 -2.3vw;
+
+      &.correct {
+        color: var(--feedbackPositiveColor);
+      }
+
+      &.partial-correct {
+        color: var(--feedbackPartialPositiveColor);
+      }
+
+      &.wrong {
+        color: var(--feedbackNegativeColor);
+      }
+    }
+
+    .star {
+      opacity: 0;
+      color: var(--feedbackSolutionColor);
+
+      &.solution {
+        opacity: 1;
+      }
     }
   }
 

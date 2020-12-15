@@ -1,18 +1,22 @@
 import { convertToPercent } from './helper';
 import {
     answered,
+    DesignUpdate,
     onDeactivate,
-    onInitialize, onReset,
-    onShowResult, onShowSolution,
+    onInitialize,
+    onReset,
+    onShowResult,
+    onShowSolution,
+    onUpdateDesign,
     ready,
-    setSuspendData,
-    Configuration
+    setSuspendData
 } from 'knowledgeworker-embedded-asset-api';
 import './resize';
 import './style.scss';
 
 const questionArea = document.getElementById('question-area');
 const stars: HTMLDivElement[] = Array.from(document.querySelectorAll('.star'));
+const root = document.documentElement;
 
 interface Choice {
     element: HTMLDivElement;
@@ -23,14 +27,12 @@ interface Choice {
 
 let choices: Choice[] = [];
 let isDeactivated = false;
-let configuration: Configuration;
 
 const addChoice = (x: string, y: string, name?: string, shouldEvaluate: boolean = true) => {
     const choice = document.createElement('div');
     choice.classList.add('choice');
     choice.style.left = x;
     choice.style.top = y;
-    choice.style.color = configuration?.actionColor;
     choices.push({
         element: choice,
         x,
@@ -72,6 +74,14 @@ const evaluate = () => {
     answered(answer.length > 0 ? answer.toString() : undefined, isCorrect, isCorrect ? 1 : 0);
 };
 
+const updateCssVars = (design: DesignUpdate) => {
+    design.actionColor && root.style.setProperty('--actionColor', design.actionColor);
+    design.feedbackPositiveColor && root.style.setProperty('--feedbackPositiveColor', design.feedbackPositiveColor);
+    design.feedbackPartialPositiveColor && root.style.setProperty('--feedbackPartialPositiveColor', design.feedbackPartialPositiveColor);
+    design.feedbackNegativeColor && root.style.setProperty('--feedbackNegativeColor', design.feedbackNegativeColor);
+    design.feedbackSolutionColor && root.style.setProperty('--feedbackSolutionColor', design.feedbackSolutionColor);
+};
+
 stars.forEach(star => star.addEventListener('click', (event: MouseEvent) => {
     const target = event.target as undefined | HTMLDivElement;
 
@@ -83,19 +93,20 @@ stars.forEach(star => star.addEventListener('click', (event: MouseEvent) => {
 }));
 questionArea?.addEventListener('click', (event: MouseEvent) => !isDeactivated && selectChoice(event));
 
-onInitialize((config) => {
+onInitialize((configuration) => {
     let restoredChoices: Choice[] = [];
 
     try {
-        restoredChoices = JSON.parse(config.suspendData);
+        restoredChoices = JSON.parse(configuration.suspendData);
     } catch (e) {
         //
     }
 
     restoredChoices.forEach(choice => addChoice(choice.x, choice.y, choice.name, false));
-
-    configuration = config;
+    updateCssVars(configuration);
 });
+
+onUpdateDesign(updateCssVars);
 
 onDeactivate(() => {
     isDeactivated = true;
@@ -103,8 +114,7 @@ onDeactivate(() => {
 });
 
 onShowResult((correct) => choices.forEach(choice => {
-    const { feedbackNegativeColor, feedbackPartialPositiveColor, feedbackPositiveColor } = configuration;
-    choice.element.style.color = choice.name ? correct ? feedbackPositiveColor : feedbackPartialPositiveColor : feedbackNegativeColor;
+    choice.element.classList.add(choice.name ? correct ? 'correct' : 'partial-correct' : 'wrong');
 }));
 
 onReset(() => {
@@ -117,21 +127,10 @@ onReset(() => {
 });
 
 onShowSolution(() => {
-    const { feedbackNegativeColor, feedbackPositiveColor, feedbackSolutionColor } = configuration;
-
-    choices.forEach(choice => {
-        choice.element.style.color = choice.name ? feedbackPositiveColor : feedbackNegativeColor;
-    });
+    choices.forEach(choice => choice.element.classList.add(choice.name ? 'correct' : 'wrong'));
 
     const choiceNames = choices.map(choice => choice.name);
-
-    stars.forEach(star => {
-        star.style.color = feedbackSolutionColor;
-
-        if (!choiceNames.includes(star.getAttribute('data-name') || undefined)) {
-            star.classList.add('solution');
-        }
-    });
+    stars.forEach(star => !choiceNames.includes(star.getAttribute('data-name') || undefined) && star.classList.add('solution'));
 });
 
 ready();
