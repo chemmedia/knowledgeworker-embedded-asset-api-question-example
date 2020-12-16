@@ -66,7 +66,7 @@ const selectChoice = (event: MouseEvent, name?: string) => {
 }
 
 const evaluate = () => {
-    const answer = choices.map(choice => choice.name || `${choice.x}:${choice.y}`)
+    const answer = choices.map(choice => choice.name || `${choice.x}:${choice.y}`);
     const isCorrect = Array.from(new Set(choices.map(choice => choice.name)))
         .filter(name => !!name).length === stars.length && stars.length === choices.length;
     setSuspendData(JSON.stringify(choices.map(({element, ...others}) => others)));
