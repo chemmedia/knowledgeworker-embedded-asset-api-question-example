@@ -1,5 +1,5 @@
 {
-  "name": "knowledgeworker-embedded-asset-api-example",
+  "name": "knowledgeworker-embedded-asset-api-question-example",
   "version": "2.0.0",
   "author": "chemmedia AG",
   "description": "An javascript interface to integrate rich content packages into responsive Knowledgeworker Create contents.",
@@ -7,12 +7,12 @@
     "knowledgeworker"
   ],
   "homepage": "https://knowledgeworker.com",
-  "bugs": "https://github.com/chemmedia/knowledgeworker-embedded-asset-api-example/issues",
+  "bugs": "https://github.com/chemmedia/knowledgeworker-embedded-asset-api-question-example/issues",
   "license": "MIT",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chemmedia/knowledgeworker-embedded-asset-api-example.git"
+    "url": "https://github.com/chemmedia/knowledgeworker-embedded-asset-api-question-example.git"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
