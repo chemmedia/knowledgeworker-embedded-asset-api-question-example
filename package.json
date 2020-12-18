@@ -46,7 +46,7 @@
     "last 1 ie major version"
   ],
   "dependencies": {
-    "knowledgeworker-embedded-asset-api": "chemmedia/knowledgeworker-embedded-asset-api#v2",
+    "knowledgeworker-embedded-asset-api": "^2.0.0-rc.1",
     "resize-observer-polyfill": "^1.5.1"
   }
 }

@@ -1,13 +1,14 @@
 import { convertToPercent } from './helper';
 import {
     answered,
+    Design,
     DesignUpdate,
     onDeactivate,
+    onDesignChanged,
     onInitialize,
     onReset,
     onShowResult,
     onShowSolution,
-    onUpdateDesign,
     ready,
     setSuspendData
 } from 'knowledgeworker-embedded-asset-api';
@@ -74,7 +75,7 @@ const evaluate = () => {
     answered(answer.length > 0 ? answer.toString() : undefined, isCorrect, isCorrect ? 1 : 0);
 };
 
-const updateCssVars = (design: DesignUpdate) => {
+const updateCssVars = (design: DesignUpdate | Design) => {
     design.actionColor && root.style.setProperty('--actionColor', design.actionColor);
     design.feedbackPositiveColor && root.style.setProperty('--feedbackPositiveColor', design.feedbackPositiveColor);
     design.feedbackPartialPositiveColor && root.style.setProperty('--feedbackPartialPositiveColor', design.feedbackPartialPositiveColor);
@@ -103,18 +104,18 @@ onInitialize((configuration) => {
     }
 
     restoredChoices.forEach(choice => addChoice(choice.x, choice.y, choice.name, false));
-    updateCssVars(configuration);
+    updateCssVars(configuration.design);
 });
 
-onUpdateDesign(updateCssVars);
+onDesignChanged(updateCssVars);
 
 onDeactivate(() => {
     isDeactivated = true;
     document.body.classList.add('deactivated');
 });
 
-onShowResult((correct) => choices.forEach(choice => {
-    choice.element.classList.add(choice.name ? correct ? 'correct' : 'partial-correct' : 'wrong');
+onShowResult((passed) => choices.forEach(choice => {
+    choice.element.classList.add(choice.name ? passed ? 'correct' : 'partial-correct' : 'wrong');
 }));
 
 onReset(() => {
