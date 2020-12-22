@@ -2828,9 +2828,10 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
-knowledgeworker-embedded-asset-api@chemmedia/knowledgeworker-embedded-asset-api#v2:
-  version "2.0.0"
-  resolved "https://codeload.github.com/chemmedia/knowledgeworker-embedded-asset-api/tar.gz/52bf5d054afe2621be049965f45fe6f6009eb4e8"
+knowledgeworker-embedded-asset-api@^2.0.0-rc.2:
+  version "2.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/knowledgeworker-embedded-asset-api/-/knowledgeworker-embedded-asset-api-2.0.0-rc.2.tgz#99a7bfe041658ba54be3814fa3a42d3a354546d3"
+  integrity sha512-XUPAMg1+LiaUKuclkjo4qn4eYFzI715WaJdOIPYAfxcKH5EASk7R/uQXwBcfuTdJB31QeGE3ywTNdiUpGNOBVQ==
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
