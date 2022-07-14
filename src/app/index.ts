@@ -1,15 +1,11 @@
 import { convertToPercent } from './helper';
 import {
     answered,
-    Design,
-    DesignUpdate,
     onDeactivate,
-    onDesignChanged,
     onInitialize,
     onReset,
     onShowResult,
     onShowSolution,
-    ready,
     setSuspendData
 } from 'knowledgeworker-embedded-asset-api';
 import './resize';
@@ -17,7 +13,6 @@ import './style.scss';
 
 const questionArea = document.getElementById('question-area');
 const stars: HTMLDivElement[] = Array.from(document.querySelectorAll('.star'));
-const root = document.documentElement;
 
 interface Choice {
     element: HTMLDivElement;
@@ -75,14 +70,6 @@ const evaluate = () => {
     answered(answer.length > 0 ? answer.toString() : undefined, isCorrect, isCorrect ? 1 : 0);
 };
 
-const updateCssVars = (design: DesignUpdate | Design) => {
-    design.actionColor && root.style.setProperty('--actionColor', design.actionColor);
-    design.feedbackPositiveColor && root.style.setProperty('--feedbackPositiveColor', design.feedbackPositiveColor);
-    design.feedbackPartialPositiveColor && root.style.setProperty('--feedbackPartialPositiveColor', design.feedbackPartialPositiveColor);
-    design.feedbackNegativeColor && root.style.setProperty('--feedbackNegativeColor', design.feedbackNegativeColor);
-    design.feedbackSolutionColor && root.style.setProperty('--feedbackSolutionColor', design.feedbackSolutionColor);
-};
-
 stars.forEach(star => star.addEventListener('click', (event: MouseEvent) => {
     const target = event.target as undefined | HTMLDivElement;
 
@@ -104,10 +91,7 @@ onInitialize((configuration) => {
     }
 
     restoredChoices.forEach(choice => addChoice(choice.x, choice.y, choice.name, false));
-    updateCssVars(configuration.design);
 });
-
-onDesignChanged(updateCssVars);
 
 onDeactivate(() => {
     isDeactivated = true;
@@ -133,5 +117,3 @@ onShowSolution(() => {
     const choiceNames = choices.map(choice => choice.name);
     stars.forEach(star => !choiceNames.includes(star.getAttribute('data-name') || undefined) && star.classList.add('solution'));
 });
-
-ready();

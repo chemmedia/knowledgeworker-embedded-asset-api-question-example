@@ -14,26 +14,26 @@ body {
       width: 4vw;
       height: 4vw;
       border: .3vw solid currentColor;
-      color: var(--actionColor);
+      color: var(--kw-action-color);
       border-radius: 50%;
       margin: -2.3vw 0 0 -2.3vw;
 
       &.correct {
-        color: var(--feedbackPositiveColor);
+        color: var(--kw-feedback-positive-color);
       }
 
       &.partial-correct {
-        color: var(--feedbackPartialPositiveColor);
+        color: var(--kw-feedback-partial-positive-color);
       }
 
       &.wrong {
-        color: var(--feedbackNegativeColor);
+        color: var(--kw-feedback-negative-color);
       }
     }
 
     .star {
       opacity: 0;
-      color: var(--feedbackSolutionColor);
+      color: var(--kw-feedback-solution-color);
 
       &.solution {
         opacity: 1;
