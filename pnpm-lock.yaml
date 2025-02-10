@@ -4,16 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  knowledgeworker-embedded-asset-api: file:../knowledgeworker-embedded-asset-api
-
 importers:
 
   .:
     dependencies:
       knowledgeworker-embedded-asset-api:
-        specifier: file:../knowledgeworker-embedded-asset-api
-        version: file:../knowledgeworker-embedded-asset-api
+        specifier: ^3.1.0
+        version: 3.1.0
       resize-observer-polyfill:
         specifier: ^1.5.1
         version: 1.5.1
@@ -208,43 +205,36 @@ packages:
     resolution: {integrity: sha512-Eci2us9VTHm1eSyn5/eEpaC7eP/mp5n46gTRB3Aar3BgSvDQGJZuicyq6TsH4HngNBgVqC5sDYxOzTExSU+NjA==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.14.3':
     resolution: {integrity: sha512-UrBoMLCq4E92/LCqlh+blpqMz5h1tJttPIniwUgOFJyjWI1qrtrDhhpHPuFxULlUmjFHfloWdixtDhSxJt5iKw==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.14.3':
     resolution: {integrity: sha512-5aRjvsS8q1nWN8AoRfrq5+9IflC3P1leMoy4r2WjXyFqf3qcqsxRCfxtZIV58tCxd+Yv7WELPcO9mY9aeQyAmw==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.14.3':
     resolution: {integrity: sha512-sk/Qh1j2/RJSX7FhEpJn8n0ndxy/uf0kI/9Zc4b1ELhqULVdTfN6HL31CDaTChiBAOgLcsJ1sgVZjWv8XNEsAQ==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.14.3':
     resolution: {integrity: sha512-jOO/PEaDitOmY9TgkxF/TQIjXySQe5KVYB57H/8LRP/ux0ZoO8cSHCX17asMSv3ruwslXW/TLBcxyaUzGRHcqg==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.14.3':
     resolution: {integrity: sha512-8ybV4Xjy59xLMyWo3GCfEGqtKV5M5gCSrZlxkPGvEPCGDLNla7v48S662HSGwRd6/2cSneMQWiv+QzcttLrrOA==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.14.3':
     resolution: {integrity: sha512-s+xf1I46trOY10OqAtZ5Rm6lzHre/UiLA1J2uOhCFXWkbZrJRkYBPO6FhvGfHmdtQ3Bx793MNa7LvoWFAm93bg==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.14.3':
     resolution: {integrity: sha512-+4h2WrGOYsOumDQ5S2sYNyhVfrue+9tc9XcLWLh+Kw3UOxAvrfOrSMFon60KspcDdytkNDh7K2Vs6eMaYImAZg==}
@@ -335,12 +325,12 @@ packages:
   jszip@3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
 
-  knowledgeworker-embedded-asset-api-ui@2.0.0:
-    resolution: {integrity: sha512-iw3Se6/HtgsqEHvsuk81Qd5L03PZFEZ80MR+T2kUsknAGY9KDb4O9scoJ8X3j3aB4FKTCif13yV7bxCfvjj6Cw==}
+  knowledgeworker-embedded-asset-api-ui@2.1.1:
+    resolution: {integrity: sha512-IC44BPyf2frCx1v5arEVDmTErmY68pVBUWx84Jn7WQwc9XXZ73ijdFsp7WAIj8AdnwYSopRFdK3squ33PwvI8w==}
     engines: {node: '>=18'}
 
-  knowledgeworker-embedded-asset-api@file:../knowledgeworker-embedded-asset-api:
-    resolution: {directory: ../knowledgeworker-embedded-asset-api, type: directory}
+  knowledgeworker-embedded-asset-api@3.1.0:
+    resolution: {integrity: sha512-nOvQ+wTm7vum+2O6MappnAo8bQHNYreZ8KP03Cl80VqO5GU9TSSwRBFbt1SqgAhiRvnXpyGtcRLbZGQHd8PUvQ==}
     engines: {node: '>=18'}
 
   lie@3.3.0:
@@ -667,11 +657,11 @@ snapshots:
       readable-stream: 2.3.8
       setimmediate: 1.0.5
 
-  knowledgeworker-embedded-asset-api-ui@2.0.0: {}
+  knowledgeworker-embedded-asset-api-ui@2.1.1: {}
 
-  knowledgeworker-embedded-asset-api@file:../knowledgeworker-embedded-asset-api:
+  knowledgeworker-embedded-asset-api@3.1.0:
     dependencies:
-      knowledgeworker-embedded-asset-api-ui: 2.0.0
+      knowledgeworker-embedded-asset-api-ui: 2.1.1
 
   lie@3.3.0:
     dependencies:
