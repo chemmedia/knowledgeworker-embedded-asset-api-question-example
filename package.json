@@ -1,6 +1,6 @@
 {
   "name": "knowledgeworker-embedded-asset-api-question-example",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "chemmedia AG",
   "description": "An example application on how to use the javascript interface to integrate rich question packages into responsive Knowledgeworker Create contents.",
   "keywords": [
